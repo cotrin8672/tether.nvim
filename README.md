@@ -28,8 +28,8 @@ With lazy.nvim:
     tether.setup()
 
     -- tether.nvim intentionally creates no default mappings.
-    vim.keymap.set("n", "<leader>ai", tether.operator, { expr = true })
-    vim.keymap.set("x", "<leader>ai", tether.visual)
+    vim.keymap.set("n", "gl", tether.operator, { expr = true, desc = "AI operator" })
+    vim.keymap.set("x", "gl", tether.visual, { desc = "AI selection" })
     vim.keymap.set("n", "<leader>ao", tether.open)
     vim.keymap.set("n", "<leader>aa", tether.accept)
     vim.keymap.set("n", "<leader>ax", tether.reject)
@@ -46,16 +46,16 @@ The OpenCode server is lazy: calling `setup()` does not start a process. The fir
 The normal-mode mapping is an expression operator. Invoke it, then use any motion or text object:
 
 ```text
-<leader>aiiw    edit the inner word
-<leader>aiip    edit the inner paragraph
-<leader>ai}     edit to the next paragraph
+gliw            edit the inner word
+glip            edit the inner paragraph
+gl}             edit to the next paragraph
 ```
 
 Tree-sitter and plugin-provided text objects work as long as they behave like normal Neovim operator motions. Once the range is known, tether asks for an instruction through `vim.ui.input` and starts the task asynchronously. Cancelling the prompt creates no task.
 
 ### Visual selections
 
-Select text in characterwise, linewise, or blockwise Visual mode and press `<leader>ai`. Selections are inclusive, and reversed selections are normalized. A blockwise selection is treated as one continuous range from its normalized start to end, not as independent rectangular edits.
+Select text in characterwise, linewise, or blockwise Visual mode and press `gl`. Selections are inclusive, and reversed selections are normalized. A blockwise selection is treated as one continuous range from its normalized start to end, not as independent rectangular edits.
 
 ### Review and conversation
 
